@@ -137,13 +137,13 @@ void initialize(ofstream *file)
 const string currentDateTime()
 {
     time_t rawtime;
-    struct tm * timeinfo;
+	struct tm * timeinfo = (tm*) malloc(sizeof(tm));
     char buffer[80];
 
     time(&rawtime);
-    timeinfo = localtime(&rawtime);
+	localtime_s(timeinfo, &rawtime);
 
-    strftime(buffer,80,"%d-%m-%Y %I:%M:%S",timeinfo);
+    strftime(buffer, 80, "%d-%m-%Y %I:%M:%S", timeinfo);
     string str(buffer);
 
     if(DEBUG)
