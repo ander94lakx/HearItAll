@@ -2,8 +2,6 @@
 
 int main()
 {
-	SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_BELOW_NORMAL);
-
 	if (!DEBUG)
 		stealth();
 	char i;
